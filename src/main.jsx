@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/Home";
 import ErrorPage from "./components/ErrorPage";
 import About from "./components/About";
+import Shop from "./components/Shop";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home></Home> },
       { path: "about", element: <About></About> },
+      {
+        path: "/shop",
+        element: <Shop></Shop>,
+        loader: () => fetch("products.json"),
+      },
     ],
   },
 ]);

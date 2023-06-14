@@ -36,7 +36,7 @@ const ErrorPage = () => {
             <span className="sr-only">Error</span> {status || "405"}
           </h2>
           <p className="text-2xl font-semibold md:text-3xl mb-8">
-            {error.message}
+            {error?.message}
           </p>
           <Link
             to="/"
