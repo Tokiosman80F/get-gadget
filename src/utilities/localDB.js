@@ -1,7 +1,7 @@
 const addToDB = (id) => {
   let shoppingCart = {};
   const storedCard = localStorage.getItem("shopping-cart");
-  if (shoppingCart) {
+  if (storedCard) {
     shoppingCart = JSON.parse(storedCard);
   }
   // quantity
@@ -30,4 +30,12 @@ const addToDB = (id) => {
   }
   localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
 };
-export { addToDB };
+const getStoredDataFromDB = () => {
+  let shoppingCart = {};
+  const storedCard = localStorage.getItem("shoppingCart");
+  if (storedCard) {
+    shoppingCart = JSON.parse(storedCard);
+  }
+  return shoppingCart;
+};
+export { addToDB, getStoredDataFromDB };
