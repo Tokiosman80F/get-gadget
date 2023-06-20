@@ -32,7 +32,7 @@ const addToDB = (id) => {
 };
 const getStoredDataFromDB = () => {
   let shoppingCart = {};
-  const storedCard = localStorage.getItem("shoppingCart");
+  const storedCard = localStorage.getItem("shopping-cart");
   if (storedCard) {
     shoppingCart = JSON.parse(storedCard);
   }
