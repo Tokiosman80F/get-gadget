@@ -1,6 +1,6 @@
 import { getStoredDataFromDB } from "../utilities/localDB";
 
-const reviewProduct = async () => {
+export const reviewProduct = async () => {
   const productData = await fetch("products.json");
   const products = await productData.json();
 
@@ -12,7 +12,6 @@ const reviewProduct = async () => {
       foundProduct.quantities = savedProducts[id];
       reviewingProducts.push(foundProduct);
     }
-    return reviewingProducts;
   }
+  return { reviewingProducts, products };
 };
-export { reviewProduct, products };

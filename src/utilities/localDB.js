@@ -38,4 +38,14 @@ const getStoredDataFromDB = () => {
   }
   return shoppingCart;
 };
-export { addToDB, getStoredDataFromDB };
+const removeItemfromDb = (id) => {
+  const storedCard = localStorage.getItem("shopping-cart");
+  if (storedCard) {
+    const shoppingCart = JSON.parse(storedCard);
+    if (id in shoppingCart) {
+      delete shoppingCart[id];
+      localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
+    }
+  }
+};
+export { addToDB, getStoredDataFromDB, removeItemfromDb };
