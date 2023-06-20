@@ -2,9 +2,14 @@ import React from "react";
 
 import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
-import { removeItemfromDb } from "../utilities/localDB";
+import { removeAllData, removeItemfromDb } from "../utilities/localDB";
+// remove single data
 const handleRemoveItem = (id) => {
   removeItemfromDb(id);
+};
+//remove all data
+const handleRemoveAllItems = () => {
+  removeAllData();
 };
 const Cart = () => {
   //here product is products.json data if needed u can access all 9 datas
@@ -41,7 +46,9 @@ const Cart = () => {
         </div>
         <div className="flex justify-end space-x-4">
           {reviewingProducts.length > 0 ? (
-            <button className="btn-outlined">Clear Cart</button>
+            <button onClick={handleRemoveAllItems} className="btn-outlined">
+              Clear Cart
+            </button>
           ) : (
             <Link to="/shop">
               <button className="btn-outlined">Back to Shop</button>
