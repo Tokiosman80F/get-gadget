@@ -1,8 +1,8 @@
 import React from "react";
-
 import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
 import { removeAllData, removeItemfromDb } from "../utilities/localDB";
+
 // remove single data
 const handleRemoveItem = (id) => {
   removeItemfromDb(id);
@@ -21,6 +21,7 @@ const Cart = () => {
       total = total + product.price * product.quantities;
     }
   }
+
   return (
     <div className="flex min-h-screen items-start justify-center bg-gray-100 text-gray-900">
       <div className="flex flex-col max-w-3xl p-6 space-y-4 sm:p-10">
