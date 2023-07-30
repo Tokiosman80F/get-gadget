@@ -12,10 +12,10 @@ const Header = () => {
       ii. extract the reviewing items 
       iii. use the length property of array to find out the how many items is being selected
   */
+  const [cartItems, setCartItems] = useContext(CartContext);
+  // console.log(cartItems);
+  console.log("the length", cartItems.length);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const product = useContext(CartContext);
-  console.log(product);
-  console.log(product.length);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
@@ -63,7 +63,9 @@ const Header = () => {
           <li>
             <Link to="/cart" aria-label="Cart" title="Cart">
               <div className="relative py-3">
-                <div>{product.length}</div>
+                <p className="absolute top-0 left-6 text-base">
+                  {cartItems.length}
+                </p>
                 <ShoppingCartIcon className="h-6 w-6 text-cyan-400" />
               </div>
             </Link>
@@ -163,6 +165,9 @@ const Header = () => {
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         <div className="relative py-3">
+                          <p className="absolute top-0 left-6 text-base">
+                            {cartItems.length}
+                          </p>
                           <ShoppingCartIcon className="h-6 w-6 text-cyan-400" />
                         </div>
                       </Link>

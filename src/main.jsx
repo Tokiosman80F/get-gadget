@@ -9,6 +9,9 @@ import About from "./components/About";
 import Shop from "./components/Shop";
 import Cart from "./components/Cart";
 import { reviewProduct } from "./loader/reviewProduct";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast("Here is your toast.");
 
 const router = createBrowserRouter([
   {
@@ -33,5 +36,8 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <>
+    <RouterProvider router={router} />,
+    <Toaster />
+  </>
 );

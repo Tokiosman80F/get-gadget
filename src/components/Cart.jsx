@@ -1,35 +1,40 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
 import { removeAllData, removeItemfromDb } from "../utilities/localDB";
+import { CartContext } from "../App";
 
-// remove single data
-const handleRemoveItem = (id) => {
-  removeItemfromDb(id);
-};
-//remove all data
-const handleRemoveAllItems = () => {
-  removeAllData();
-};
 const Cart = () => {
   //here product is products.json data if needed u can access all 9 datas
-  const { reviewingProducts, products } = useLoaderData();
-  console.log(reviewingProducts);
+  const [cartItems, setCartItems] = useContext(CartContext);
+
+  console.log("Cart Items=>", cartItems);
   let total = 0;
-  if (reviewingProducts.length > 0) {
-    for (const product of reviewingProducts) {
-      total = total + product.price * product.quantities;
+  if (cartItems.length > 0) {
+    for (const product of cartItems) {
+      total = total + product.price * product.quantity;
     }
   }
-
+  console.log("total = ", total);
+  // remove single data
+  const handleRemoveItem = (id) => {
+    const filteredCart = cartItems.filter((item) => item.id !== id);
+    setCartItems(filteredCart);
+    removeItemfromDb(id);
+  };
+  //remove all data
+  const handleRemoveAllItems = () => {
+    setCartItems([]);
+    removeAllData();
+  };
   return (
     <div className="flex min-h-screen items-start justify-center bg-gray-100 text-gray-900">
       <div className="flex flex-col max-w-3xl p-6 space-y-4 sm:p-10">
         <h2 className="text-xl font-semibold">
-          {reviewingProducts.length ? "Review the item" : "Cart is EMPTY !!"}
+          {cartItems.length ? "Review the item" : "Cart is EMPTY !!"}
         </h2>
         <ul className="flex flex-col divide-y-2 ">
-          {reviewingProducts.map((product) => (
+          {cartItems.map((product) => (
             <CartItem
               key={product.id}
               product={product}
@@ -46,7 +51,7 @@ const Cart = () => {
           </p>
         </div>
         <div className="flex justify-end space-x-4">
-          {reviewingProducts.length > 0 ? (
+          {cartItems.length > 0 ? (
             <button onClick={handleRemoveAllItems} className="btn-outlined">
               Clear Cart
             </button>
